@@ -1,3 +1,5 @@
+const mineflayer = require('mineflayer');
+
 var options = {
       host: 'localhost',
       username: 'email@example.com',
