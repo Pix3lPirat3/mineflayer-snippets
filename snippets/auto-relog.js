@@ -1,21 +1,32 @@
 const mineflayer = require('mineflayer');
 
-var options = {
-      host: 'localhost',
-      username: 'email@example.com',
-      password: '12345678'
-}
+var minecraft;
 
-var bot = mineflayer.createBot(options);
-
-function startMinecraft(bot) {
-    bot.on('kicked', function(reason) {
-        bot = mineflayer.createBot(options);
-        setTimeout(function() {
-            startMinecraft(bot);
-        }, 6000);
+/**
+ * Allow the user to auto-relog after being kicked from the server.
+ * All events must be registered in this function 
+ * References Used:
+ * https://github.com/PrismarineJS/mineflayer/issues/164
+ * https://github.com/PrismarineJS/mineflayer/issues/623
+ */
+function startMinecraft(minecraft) {
+    minecraft = mineflayer.createBot(config.minecraft)
+    minecraft.on('login', function() {
+        console.info("[Client] Successfully logged into account");
     });
-    bot.on('error', console.log)
+      
+    minecraft.on('kicked', function(reason) {
+        console.log("[Kick] ", reason);
+        setTimeout(function() {
+            startMinecraft(minecraft);
+        }, 6000)
+    });
+    
+    /* Do not call startMinecraft on 'error', as any small error will cause a complete reboot */
+    minecraft.on('error', function(err) {
+        console.log('[Client] Error:', err)
+    })
+    
 }
 
-startMinecraft(bot);
+startMinecraft(minecraft);
