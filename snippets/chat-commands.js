@@ -3,7 +3,7 @@
   Usage: ".echo Hello World!"
 */
 bot.on("chat", function (username, message) {
-  if (username === bot.username) return
+  if (username === bot.username) return;
   if (!message.startsWith(".")) return;
 
   var args = message.split(" ");
