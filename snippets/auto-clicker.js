@@ -20,16 +20,18 @@ var bot = mineflayer.createBot({
 
 let autoClicker = {
   running: undefined,
+  blacklist: ['experience_orb', 'player'],
   start: function() {
     if (this.running) return;
     this.running = setInterval(async function() {
       var entity = bot.entityAtCursor(3.5);
       if (!entity) return;
-      await bot.attack(entity, true);
-    }, 500);
+      if(autoClicker.blacklist.includes(entity.name)) return;
+      await bot.attack(entity, true).catch(() => console.log);
+    }, 1000);
   },
   stop: function() {
-      this.running = clearInterval(this.running) 
+  	this.running = clearInterval(this.running) 
   }
 }
 
@@ -80,5 +82,6 @@ bot.entityAtCursor = (maxDistance = 3.5) => {
       }
     }
   }
+
   return targetEntity
 }
