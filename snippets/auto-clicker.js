@@ -25,9 +25,9 @@ let autoClicker = {
     if (this.running) return;
     this.running = setInterval(async function() {
       var entity = bot.entityAtCursor(3.5);
-      if (!entity) return;
+      if (!entity) return bot.swingArm();
       if(autoClicker.blacklist.includes(entity.name)) return;
-      await bot.attack(entity, true).catch(() => console.log);
+      bot.attack(entity, true);
     }, 1000);
   },
   stop: function() {
