@@ -31,7 +31,7 @@ let autoClicker = {
     }, 1000);
   },
   stop: function() {
-  	this.running = clearInterval(this.running) 
+      this.running = clearInterval(this.running) 
   }
 }
 
@@ -49,12 +49,13 @@ bot.on('chat', function(username, message) {
   }
 })
 
+// This function has been altered to only match a 'mob' entity
 bot.entityAtCursor = (maxDistance = 3.5) => {
   const block = bot.blockAtCursor(maxDistance)
   maxDistance = block?.intersect.distanceTo(bot.entity.position)??maxDistance
 
   const entities = Object.values(bot.entities)
-    .filter(entity => entity.type !== 'object' && entity.username !== bot.username && entity.position.distanceTo(bot.entity.position) <= maxDistance)
+    .filter(entity => entity.type !== 'object' && entity.username !== bot.username && entity.position.distanceTo(bot.entity.position) <= maxDistance && entity.type == 'mob')
 
   const dir = new Vec3(-Math.sin(bot.entity.yaw) * Math.cos(bot.entity.pitch), Math.sin(bot.entity.pitch), -Math.cos(bot.entity.yaw) * Math.cos(bot.entity.pitch))
   const iterator = new RaycastIterator(bot.entity.position.offset(0, bot.entity.height, 0), dir.normalize(), maxDistance)
