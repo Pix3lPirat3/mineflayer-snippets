@@ -6,12 +6,12 @@ Just say clicker start or clicker stop to.. yea..
 */
 
 const mineflayer = require('mineflayer');
-var Vec3 = require('Vec3');
+let Vec3 = require('Vec3');
 const {
   RaycastIterator
 } = require('prismarine-world').iterators
 
-var bot = mineflayer.createBot({
+let bot = mineflayer.createBot({
   host: '',
   version: '',
   username: '',
@@ -24,7 +24,7 @@ let autoClicker = {
   start: function() {
     if (this.running) return;
     this.running = setInterval(async function() {
-      var entity = bot.entityAtCursor(3.5);
+      let entity = bot.entityAtCursor(3.5);
       if (!entity) return bot.swingArm();
       if(autoClicker.blacklist.includes(entity.name)) return;
       bot.attack(entity, true);
@@ -38,15 +38,17 @@ let autoClicker = {
 bot.on('chat', function(username, message) {
   if (!message.startsWith('clicker')) return;
 
-  var type = message.split(' ')[1];
+  let type = message.split(' ')[1];
   if (!type) return bot.chat('What do you want me to do? start or stop.');
 
-  if (type === 'start') {
-    autoClicker.start();
-  }
-  if (type === 'stop') {
-    autoClicker.stop();
-  }
+  switch (type) {
+    case "start":
+      autoClicker.start();
+      break;
+    case "stop":
+      autoClicker.stop();
+      break;
+  }    
 })
 
 // This function has been altered to only match a 'mob' entity
