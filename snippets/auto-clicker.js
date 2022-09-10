@@ -16,10 +16,6 @@ bot.on('chat', function(username, message) {
     if(args[0] === 'speed')  {
       if(args.length < 2) bot.chat('You must specify a speed..');
       autoClicker.click_interval = args[1];
-      if(autoClicker.running) {
-        autoClicker.stop();
-        autoClicker.start();
-      }
     }
   }
 })
