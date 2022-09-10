@@ -2,7 +2,7 @@ const mineflayer = require('mineflayer');
 
 const bot = mineflayer.createBot({
   host: 'survival.deptofcraft.com',
-  username: 'Pix3lPirat3',
+  username: '',
   auth: 'microsoft'
 })
 
@@ -10,14 +10,6 @@ let prefix = '!';
 bot.on('chat', function(username, message) {
   const args = message.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-  if(command === 'say') {
-    bot.chat(args.join(' '));
-  }
-  if(command === 'slot') {
-    if(!args.length) bot.chat('You must specify a slot (0-8)');
-    bot.setQuickBarSlot(args[0])
-    bot.chat(`Set my quick bar slot to #${args[0]}`)
-  }
   if(command === 'clicker') {
     if(args[0] === 'start') autoClicker.start();
     if(args[0] === 'stop') autoClicker.stop();
