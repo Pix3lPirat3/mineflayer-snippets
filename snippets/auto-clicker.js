@@ -16,6 +16,11 @@ bot.on('chat', function(username, message) {
     if(args[0] === 'speed')  {
       if(args.length < 2) bot.chat('You must specify a speed..');
       autoClicker.click_interval = args[1];
+      console.log(autoClicker.running)
+      if(autoClicker.running) {
+        autoClicker.stop();
+        autoClicker.start();
+      }
     }
   }
 })
@@ -29,8 +34,8 @@ const autoClicker = {
   click_interval: 1000,
   blacklist: ['experience_orb'],
   start: () => {
-    if (this.running) return
-    this.running = setInterval(async function () {
+    if (autoClicker.running) return
+    autoClicker.running = setInterval(async function () {
       const entity = bot.entityAtCursor()
       if (!entity) return bot.swingArm()
       if (autoClicker.blacklist.includes(entity.name)) return
@@ -38,6 +43,6 @@ const autoClicker = {
     }, autoClicker.click_interval)
   },
   stop: () => {
-    this.running = clearInterval(this.running)
+    autoClicker.running = clearInterval(autoClicker.running)
   }
 }
