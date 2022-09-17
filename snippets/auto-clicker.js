@@ -37,8 +37,7 @@ const autoClicker = {
     if (autoClicker.running) return
     autoClicker.running = setInterval(async function () {
       const entity = bot.entityAtCursor()
-      if (!entity) return bot.swingArm()
-      if (autoClicker.blacklist.includes(entity.name)) return
+      if (!entity || autoClicker.blacklist.includes(entity.name)) return bot.swingArm()
       bot.attack(entity, true)
     }, autoClicker.click_interval)
   },
