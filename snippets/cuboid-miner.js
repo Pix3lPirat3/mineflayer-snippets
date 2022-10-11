@@ -1,5 +1,7 @@
 // A simple cuboid miner script, for the people wanting to mine a cuboid (or do other things with "blocks between two positions")
 
+// OUTDATED: Check https://github.com/Pix3lPirat3/mineflayer-snippets/blob/main/snippets/mineflayer-cuboid.js
+
 var v = require('vec3')
 // Accepts Vec3
 function getCuboid(c1, c2) {
