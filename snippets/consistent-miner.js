@@ -12,19 +12,16 @@ const bot = mineflayer.createBot({
 });
 
 async function dig() {
-    while (isDigging) {
-        if (!bot.heldItem || !bot.heldItem.name.includes("pickaxe")) {
-        }
+    if (!isDigging) return
+    const block = bot.blockAtCursor(4);
 
-        const block = bot.blockAtCursor(4);
-
-        if (!block) {
-            await sleep(100);
-            continue;
-        }
-
+    if (!block) {
+        await sleep(100);
+    } else {
         await bot.dig(block, "ignore", "raycast"); // 2nd param: true to 'snap at block' or 'ignore' to just not turn head
     }
+    
+    dig()
 }
 
 function equip(itemName) {
