@@ -71,13 +71,18 @@ class Cuboid {
 
     // Returns vec3
     getRandomLocation() {
-        let rand = new Random();
-        let x = rand.nextInt(Math.abs(this.xMax - this.xMin) + 1) + this.xMin;
-        let y = rand.nextInt(Math.abs(this.yMax - this.yMin) + 1) + this.yMin;
-        let z = rand.nextInt(Math.abs(this.zMax - this.zMin) + 1) + this.zMin;
+        let distX = Math.abs(this.xMax - this.xMin);
+        let x = Math.floor(Math.random() * (distX + 1)) + this.xMin;
+
+        let distY = Math.abs(this.yMax - this.yMin);
+        let y = Math.floor(Math.random() * (distY + 1)) + this.yMin;
+
+        let distZ = Math.abs(this.zMax - this.zMin);
+        let z = Math.floor(Math.random() * (distZ + 1)) + this.zMin;
+        
         return v(x, y, z);
     }
-
+    
     // Returns int
     getTotalBlockSize() {
         return this.getHeight() * this.getXWidth() * this.getZWidth();
