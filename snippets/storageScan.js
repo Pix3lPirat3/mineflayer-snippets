@@ -11,7 +11,7 @@ let chests = bot.findBlocks({
   count: 50
 });
 
-sender.reply(`I see ${chests.length} chests to scan..`);
+bot.chat(`I see ${chests.length} chests to scan..`);
 
 // loop through chest locations, navigate to each chest, open it, and store the chest items inside the bot's storage manager for later reference.
 for(let a = 0; a < chests.length; a++) {
