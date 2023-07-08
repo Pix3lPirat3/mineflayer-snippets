@@ -2,6 +2,65 @@
 
 // OUTDATED: Check https://github.com/Pix3lPirat3/mineflayer-snippets/blob/main/snippets/mineflayer-cuboid.js
 
+/*
+DO NOT USE
+REFER TO LINE 3
+
+THIS IS JUST HERE FOR ARCHIVE PURPOSES
+
+THIS SNIPPET IS NOW OUTDATED AND DOESN'T WORK HALF THE TIME
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var v = require('vec3')
 // Accepts Vec3
 function getCuboid(c1, c2) {
